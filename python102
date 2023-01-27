@@ -1,0 +1,116 @@
+from datetime import date
+import datetime
+
+user_name = []
+user_dete = []
+
+while True:
+    name = input("Enter names : ")
+    user_name.append(name)
+    birthday_date = input("please enter the birthday date in this format  :- YYYY-MM-DD : ")
+    user_dete.append(birthday_date.split('-'))
+    finish = input("press (y) if you done or press enter complete .. ")
+    if str(finish) == 'y':
+        break
+
+time_now = datetime.datetime.now()
+today_date = str((date.today())).split('-')
+year = int(today_date[0])
+month = int(today_date[1])
+day = int(today_date[2])
+date_now = datetime.date(year,month,day)
+sater = "https://satr.codes/"
+if time_now.hour < 11 :
+    print("\nHello Good Morning, today  is",date_now.strftime('%A'),day,"/",month,"/",year,"and the tims is:",time_now.hour,time_now.minute,time_now.second,"AM")
+elif 12 <= time_now.hour <= 17:
+    print("\nHello Good After noon, today  is",date_now.strftime('%A'),day,"/",month,"/",year,"and the tims is:",time_now.hour,time_now.minute,time_now.second,"PM")
+else:
+    print("\nHello Good Evening, today  is",date_now.strftime('%A'),day,"/",month,"/",year,"and the tims is:",time_now.hour,time_now.minute,time_now.second,"PM")
+
+print("\n\n!#$!Welcome!#$! to M3sh4lR3 code, This project for python102 from",sater)
+print("\n")
+n = len(user_name)
+
+
+bigy = {}
+smally= {}
+
+
+biggest = []
+smallest =[]
+
+
+
+def add_bigy():
+    age = year - iyear
+    name= usr
+    bigy[int(age)] = name
+
+def add_smally():
+
+    age = year - iyear
+    name= usr
+    smally[int(age)] = name
+
+
+
+def addbog():
+    to = year - iyear
+    biggest.append(to)
+    biggest.sort(reverse=True)
+def addsmall():
+    to = year - iyear
+    smallest.append(to)
+    smallest.sort()
+
+
+
+def dayy():
+    a = int(iyear)
+    b = int(imonth)
+    c = int(iday)
+    date_test = datetime.date(a, b, c)
+    e = date_test.strftime('%A')
+    return e
+
+for i in range(n):
+
+    usr = user_name[i]
+    dt = user_dete[i]
+
+    for m in dt:
+
+        iyear = int(dt[0])
+        imonth = int(dt[1])
+        iday = int(dt[2])
+
+        def yer():
+            return year - iyear
+
+        if iyear not in range(year - 100, year + 1):
+            print("\nInvalid  year for input name", usr)
+            exit()
+
+        elif imonth not in range(1, 13):
+            print("\nInvalid  month for input name",usr)
+            exit()
+
+        elif iday not in range(1, 31):
+            print("\nInvalid  day for input name", usr)
+            exit()
+    print("-",usr.capitalize(), "is", yer(), "years old and she/he was born on",dayy())
+    addbog()
+    addsmall()
+    add_bigy()
+    add_smally()
+if n == 1 :
+    print("\n*There is no oldest or youngest person")
+else:
+    for key, value in bigy.items():
+        if biggest[0] == key:
+            print("\n* Total pepole is",n,)
+            print("\n* The oldest one is", str(value).capitalize())
+    for key, value in smally.items():
+
+        if smallest[0] == key:
+            print("\n* The youngest one is", str(value).capitalize())
