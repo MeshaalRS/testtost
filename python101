@@ -1,0 +1,63 @@
+sater = "https://satr.codes/"
+print("\n\n!#$!Welcome!#$! to M3sh4lR3 code, This project for python101 from", sater)
+
+book = {00: 'may', 11: 'amal', 22: 'moha', 33: 'khaled', 44: 'abod', 55: 'yara', 66: 'lara'}
+tst = input("\n\nEnter a number to search between 00 -> 99 : ")
+
+if not tst.isnumeric():
+    print("This is not a number")
+    exit()
+
+elif int(tst) not in range(00, 100):
+    print("This is invalid number")
+    exit()
+
+else:
+    if int(tst) in book.keys():
+        print("The name is :", book[int(tst)].capitalize())
+        exit()
+
+    else:
+        print("Sorry, the number is not found")
+
+if int(tst) not in book.keys():
+    print("Do you want me to add this number ? Enter 1 to Add number or 0 to quit :")
+
+last = input()
+if not last.isnumeric():
+    print("it is not valid input ! bye")
+    exit()
+
+elif int(last) == 1:
+    print("Oaky .. ")
+
+else:
+    print("have a good day , bye !")
+    exit()
+toadd = input("Enter a number : ")
+if not toadd.isnumeric():
+    print("This is not a number")
+    exit()
+nameadd = input("Enter the name : ")
+
+book[(toadd)] = nameadd
+
+
+def get_key(val):
+    for key, value in book.items():
+        if val == value:
+            return val, key
+
+    return "name doesn't exist"
+
+
+print("number added successfully")
+
+search = input("\nEnter a name to look for his number or 'q' to quit: ")
+if search == 'q':
+    print("thank yoy")
+    exit()
+
+else:
+
+    print("\n\n", get_key(search)[0].capitalize(), "Number is:", get_key(search)[1])
