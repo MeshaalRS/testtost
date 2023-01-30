@@ -1,63 +1,85 @@
 sater = "https://satr.codes/"
 print("\n\n!#$!Welcome!#$! to M3sh4lR3 code, This project for python101 from", sater)
 
-book = {00: 'may', 11: 'amal', 22: 'moha', 33: 'khaled', 44: 'abod', 55: 'yara', 66: 'lara'}
-tst = input("\n\nEnter a number to search between 00 -> 99 : ")
+book = {00: 'may',
+        11: 'amal',
+        22: 'moha',
+        33: 'khaled',
+        44: 'abode',
+        55: 'yara',
+        66: 'lara'}
 
-if not tst.isnumeric():
-    print("This is not a number")
-    exit()
 
-elif int(tst) not in range(00, 100):
-    print("This is invalid number")
-    exit()
-
-else:
-    if int(tst) in book.keys():
-        print("The name is :", book[int(tst)].capitalize())
+def start():
+    q = input("\nHello , what would you like to do ? "
+              "\n1- search by name"
+              "\n2- search by number"
+              "\n0- to quit ")
+    if q == '1':
+        search_by_name()
+    elif q == '2':
+        search_by_number()
+    elif q == '0':
         exit()
+    else:
+        print("\ninvalid number")
+        start()
+
+
+def search_by_number():
+    num = input("Enter the number you look for :")
+    if num.isnumeric():
+        if int(num) in book.keys():
+            print("\nThe name is :", book[int(num)].capitalize())
+        elif num not in book.keys():
+            print("this number dose not exit")
+            add_new()
 
     else:
-        print("Sorry, the number is not found")
-
-if int(tst) not in book.keys():
-    print("Do you want me to add this number ? Enter 1 to Add number or 0 to quit :")
-
-last = input()
-if not last.isnumeric():
-    print("it is not valid input ! bye")
-    exit()
-
-elif int(last) == 1:
-    print("Oaky .. ")
-
-else:
-    print("have a good day , bye !")
-    exit()
-toadd = input("Enter a number : ")
-if not toadd.isnumeric():
-    print("This is not a number")
-    exit()
-nameadd = input("Enter the name : ")
-
-book[(toadd)] = nameadd
+        print("\nthis is not a number")
+        start()
+        exit()
 
 
-def get_key(val):
-    for key, value in book.items():
-        if val == value:
-            return val, key
+def search_by_name():
+    name = input("Enter the name you look for :")
+    if name.isnumeric():
+        print("\nthis is a number not a name ")
+        start()
+        exit()
+    else:
+        for key, value in book.items():
+            if name == value:
+                print("the number of", value.capitalize(), "is", key)
+            else:
+                if name not in book.values():
+                    print("this name dose not exit")
+                    add_new()
+                    exit()
 
-    return "name doesn't exist"
+
+def add_new():
+
+    ask = input("Do you want to add a new name/number to our system ? press 1 to add or 0 to quit  ")
+    if ask == '1':
+        name_to_add = input("Enter the new name: ")
+        number_to_add = input("Enter the new number: ")
+
+        if number_to_add.isnumeric():
+            book[int(number_to_add)] = name_to_add
+            print("Done")
+            start()
+
+        else:
+            print("this is not a valid number ")
+            add_new()
+    elif ask == '0':
+        print("thank you")
+        exit()
+    else:
+        print("this is not a valid number")
 
 
-print("number added successfully")
+start()
 
-search = input("\nEnter a name to look for his number or 'q' to quit: ")
-if search == 'q':
-    print("thank yoy")
-    exit()
 
-else:
-
-    print("\n\n", get_key(search)[0].capitalize(), "Number is:", get_key(search)[1])
