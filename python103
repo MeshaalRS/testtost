@@ -1,0 +1,123 @@
+from datetime import date
+import datetime
+
+time_now = datetime.datetime.now()
+today_date = str((date.today())).split('-')
+year = int(today_date[0])
+month = int(today_date[1])
+day = int(today_date[2])
+date_now = datetime.date(year, month, day)
+sater = "https://satr.codes/"
+
+print("\n\n!#$!Welcome!#$! to M3sh4lR3 code, This is a project for python103 from", sater)
+print("\n")
+
+
+class Bank:
+    __balance = 100
+
+    def __init__(self, customer_name, account_num):
+        self.customer_name = customer_name
+        self.account_num = account_num
+        self.__balance = Bank.__balance
+
+    def welcome(self):
+        print('Hello', self.customer_name, "your account number is:", self.account_num)
+
+    def get_balance(self):
+        return self.__balance
+
+    def print_balance(self):
+        print("Hello", self.customer_name, "you have a", self.get_balance(), "$ in you account", self.account_num)
+
+    def set_deposit(self, add):
+
+        if add == 0:
+            print("\nGo get money  poor man !")
+            exit()
+        else:
+            self.__balance = self.get_balance() + add
+            print("\nmoney add done")
+            if time_now.hour <= 11:
+                print("\nyou have added ", add, "$ on you account", self.account_num, "on", date_now.strftime('%A'),
+                      day, "/", month, "/", year, "at", time_now.hour, ":", time_now.minute, "AM",
+                      "and you balance now is ", self.get_balance(), "$")
+            else:
+                print("\nyou have added ", add, "$ on you account", self.account_num, "on", date_now.strftime('%A'),
+                      day, "/", month, "/", year, "at", time_now.hour, ":", time_now.minute, "PM",
+                      "and you balance now is ", self.get_balance(), "$")
+
+    def set_withdrawal(self, sub):
+
+        if sub > self.get_balance():
+            print("you don't have enough money")
+            exit()
+        else:
+            self.__balance = self.get_balance() - sub
+            print("\nmoney sub done")
+            if time_now.hour <= 11:
+                print('\nyou have take ', sub, "$ from you account", self.account_num, "on",
+                      date_now.strftime('%A'),
+                      day, "at", time_now.hour, ":", time_now.minute, "AM", "and you balance now is ", self.get_balance())
+            else:
+                print("\nyou have take ", sub, "$ from you account", self.account_num, "on",
+                      date_now.strftime('%A'),
+                      day, "/", month, "/", year, "at", time_now.hour, ":", time_now.minute, "PM",
+                      "and you balance now is ", self.get_balance(), "$")
+
+
+clients_info = []
+
+
+def add_info():
+    name = client_name.capitalize()
+    account = int(client_account)
+    clients_info.extend((name, account))
+
+
+client_name = input("Enter ur name :")
+if not type(client_name) == str:
+    print("invalid name ")
+    exit()
+
+client_account = input("Enter an account number:")
+if not client_account.isnumeric():
+    print("invalid number")
+    exit()
+
+add_info()
+client1 = Bank(clients_info[0], clients_info[1])
+client1.welcome()
+
+ask = int(input("Please enter the required number \n* 1 * to deposit   \n* 2 * to withdraw \n* 3 * to check you "
+                "balance "))
+
+if int(ask) == 1:
+
+    deposit = input("how much do you want to deposit? ")
+
+    if deposit.isnumeric():
+
+        client1.set_deposit(int(deposit))
+    else:
+
+        print('The value is not correct')
+
+elif int(ask) == 2:
+
+    withdraw = input("How much do you want to withdraw? ")
+
+    if withdraw.isnumeric():
+
+        client1.set_withdrawal(int(withdraw))
+    else:
+
+        print("The value is not correct")
+
+elif int(ask) == 3:
+
+    print(client1.get_balance())
+
+else:
+    print("invalid input")
+    exit()
