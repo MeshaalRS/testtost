@@ -1,4 +1,4 @@
-# testtost
+#!/usr/bin/python3
 
 
-play around with python 
+print('playing around with python !')
